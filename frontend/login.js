@@ -2,10 +2,9 @@ const server = "https://s-expensetrackerdemo2.onrender.com";
 
 document.getElementById("loginForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("button clicked");
   const mail = document.getElementById("loginMail").value;
   const password = document.getElementById("loginPassword").value;
-  console.log(mail, password);
+  
   axios
     .post(`${server}/user/login`, {
       mail: mail,
@@ -20,7 +19,6 @@ document.getElementById("loginForm")?.addEventListener("submit", (e) => {
         // add msg to ui here
         return;
       }
-      console.log("response", response);
       localStorage.setItem("token", response.data.token);
       window.location.href = "./expenseForm.html";
     });
@@ -44,5 +42,4 @@ document
         mail: mail,
       }),
     });
-    console.log(mail);
   });

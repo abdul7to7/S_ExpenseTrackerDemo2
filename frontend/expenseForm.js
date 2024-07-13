@@ -76,13 +76,11 @@ document.getElementById("rowSizeSelect").addEventListener("change", (e) => {
 //adding an expense
 document.getElementById("expenseForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  console.log("button clicked");
   const amount = document.getElementById("expenseAmount").value;
   const description = document.getElementById("expenseDesc").value;
   const category = document.getElementById("expenseCat").value;
   let response = await postExpense({ amount, description, category });
   if (response) {
-    console.log(response.message);
     addExpenseToUI(response.expense, "recent");
     if (lastPage) addExpenseToUI(response.expense);
   }
@@ -98,7 +96,6 @@ document.getElementById("expense-list").addEventListener("click", async (e) => {
   }
   if (response) {
     //delete from UI
-    console.log(response.message);
     removeFromUI(e.target);
   }
 });
@@ -113,7 +110,6 @@ document
       },
     });
     newOrder = await newOrder.json();
-    console.log(newOrder);
     let options = {
       key: newOrder.key_id,
       order_id: newOrder.rzpOrder.id,
@@ -133,7 +129,6 @@ document
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             alert(data.message);
             localStorage.setItem("token", data.token);
             premiumUser(data.user.isPremium);
@@ -143,7 +138,6 @@ document
     let rzp_c = new Razorpay(options);
     rzp_c.open();
     rzp_c.on("payment.failed", (response) => {
-      console.log(response);
       alert("Something went wrong");
     });
   });
@@ -167,7 +161,6 @@ document
       li.style.fontSize = "14px";
       leaderboardList.append(li);
     });
-    console.log(data);
   });
 
 document
@@ -199,7 +192,6 @@ document
     link.download = filename;
 
     link.click();
-    console.log(data);
   });
 
 function addExpenseToUI(expense, recent) {

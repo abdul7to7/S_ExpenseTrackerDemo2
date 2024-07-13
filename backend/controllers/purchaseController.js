@@ -6,17 +6,13 @@ const User = require("../models/User");
 const generateToken = require("../middleware/authGenerate");
 exports.buyMemberShip = (req, res, next) => {
   try {
-    console.log(process.env.RZP_KEY_ID);
     let rzp = new razorPay({
       key_id: process.env.RZP_KEY_ID,
       key_secret: process.env.RZP_KEY_SECRET,
     });
-    // console.log("rzp------->>>>>", rzp);
     const amount = 2500;
     rzp.orders.create({ amount, currency: "INR" }, (err, rzpOrder) => {
       if (err) {
-        // console.log("errrprrr->>>>>", err);
-        // throw new Error(JSON.stringify(err));
         res
           .status(500)
           .json({ success: false, message: `Something went wrong ${err}` });

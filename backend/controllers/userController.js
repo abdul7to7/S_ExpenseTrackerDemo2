@@ -85,7 +85,7 @@ exports.login = async (req, res, next) => {
 };
 
 exports.forgotPassword = async (req, res, next) => {
-  console.log(req.body.mail);
+  
   const uuid = uuidv4();
   const sendSmtpEmail = {
     to: [
@@ -108,12 +108,10 @@ exports.forgotPassword = async (req, res, next) => {
       </body>
       </html>`,
   };
-  console.log(uuid);
   try {
     const user = await User.findOne({ where: { mail: req.body.mail } });
     if (user) await ForgotPassword.create({ id: uuid, userId: user.id });
     const response = await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log("Email sent successfully:", response);
   } catch (error) {
     console.error("Error sending email:", error);
   }

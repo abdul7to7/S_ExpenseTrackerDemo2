@@ -26,13 +26,11 @@ exports.getAllExpensesByPage = async (req, res, next) => {
   try {
     let page = Number(req.query.page);
     let size = Number(req.query.size);
-    console.log(req.query.page, req.query.size);
     const { count, rows } = await Expense.findAndCountAll({
       limit: size,
       offset: (page - 1) * size,
       where: { userId: req.user.id },
     });
-    // console.log(count);
     return res.status(201).json({
       success: true,
       expenses: rows,
@@ -94,7 +92,6 @@ exports.deleteExpense = async (req, res, next) => {
       { totalExpense: -expense.amount },
       { where: { id: req.user.id }, transaction: t }
     );
-    console.log("deleted expense-->", expense);
     await t.commit();
     return res
       .status(201)

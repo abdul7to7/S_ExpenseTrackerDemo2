@@ -47,7 +47,6 @@ exports.downloadReport = async (req, res) => {
       });
       res.json({ url });
     } else {
-      console.error(`Error: ${err.message}`);
       res.status(500).send(`Error: ${err.message}`);
     }
   }

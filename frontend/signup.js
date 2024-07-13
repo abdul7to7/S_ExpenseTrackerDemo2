@@ -2,11 +2,9 @@ const server = "https://s-expensetrackerdemo2.onrender.com";
 
 document.getElementById("signUpForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("button clicked");
   const username = document.getElementById("signUpUsername").value;
   const mail = document.getElementById("signUpMail").value;
   const password = document.getElementById("signUpPassword").value;
-  console.log(username, mail, password);
   fetch(`${server}/user/signup`, {
     method: "POST",
     headers: {

@@ -17,16 +17,12 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     }
   });
   addTomonthlyTableUI(monthlyExpense);
-  console.log(currentDate.getMonth());
   const newRow = table.insertRow(-1);
   const newCell = newRow.insertCell(0);
   newCell.textContent = `Total Expenses = ${total}`;
   newCell.colSpan = table.rows[0].cells.length;
   newCell.classList.add("numbers");
   newRow.style.backgroundColor = "lightblue";
-
-  console.log(data);
-  console.log(monthlyExpense);
 });
 
 async function getExpensesByPage() {
