@@ -1,4 +1,4 @@
-const server = "http://localhost:4000";
+const server = "https://s-expensetrackerdemo2.onrender.com";
 
 //Dom Loading expenses
 let currentPage = 1;
